@@ -44,24 +44,44 @@ What you'll do below is:
 
 ```python
 def factorial(n):
-    None
+    permutations = 1
+    for i in range(2,n+1):
+        permutations = permutations * i
+    return permutations
 ```
 
 Now, test your function with n=20
 
 
 ```python
-None
+factorial(20) # 2432902008176640000
 ```
+
+
+
+
+    2432902008176640000
+
+
 
 Just so you know, Python has a built-in function `factorial` in the  `math` library as well! Let's use our own function in this lab, but just use the `math` function once to check your previous answer!
 
 
 ```python
 import math 
-
-None
 ```
+
+
+```python
+math.factorial(20)
+```
+
+
+
+
+    2432902008176640000
+
+
 
 ## Some practice on permutations
 
@@ -70,21 +90,17 @@ Hint: a permutation with replacement is needed here. Think carefully of what nee
 
 
 ```python
-app_num = None
-app_num
-```
-
-
-```python
-app_denom = None
-app_denom
-```
-
-
-```python
-app_total = None
+# factorial(total items) / factorial(x repetitions) * factorial(y repetitions - if any)
+app_total = math.factorial(6) / (math.factorial(3) * math.factorial(3))
 app_total
 ```
+
+
+
+
+    20.0
+
+
 
 ## Permutations: hack a phone
 
@@ -94,63 +110,127 @@ Think about the sample space and the event space separately. What is the denomin
 
 
 ```python
-denom_phone = None
+# 10 ** 4 sample space. / 
+denom_phone = math.pow(10, 4)
 denom_phone
 ```
+
+
+
+
+    10000.0
+
+
 
 And the numerator?
 
 
 ```python
-numer_phone = None
+numer_phone = 5
 numer_phone
 ```
 
 
+
+
+    5
+
+
+
+
 ```python
-prob_unlock = None
+prob_unlock = numer_phone / denom_phone
 prob_unlock
 ```
+
+
+
+
+    0.0005
+
+
 
 Right before you lost your phone you ate a pretzel, and you are pretty sure a grease pattern was left on the four crucial digits of your screen. The four letters in your access code are 3,4,7 and 8, and you realize that this information can increase the thief's chances massively. Assuming the thief interprets the smudgemarks in an intelligent way, what are the chances that the phone will be unlocked successfully?
 
 
 ```python
-denom_phone_smudge = None #or math.factorial(4)
+denom_phone_smudge = math.factorial(4) #or math.factorial(4)
 denom_phone_smudge
 ```
 
 
+
+
+    24
+
+
+
+
 ```python
-numer_phone_smudge = None
+numer_phone_smudge = 5
 numer_phone_smudge
 ```
 
 
+
+
+    5
+
+
+
+
 ```python
-prob_unlock_smudge = None
+prob_unlock_smudge = numer_phone_smudge / denom_phone_smudge
 prob_unlock_smudge
 ```
+
+
+
+
+    0.20833333333333334
+
+
 
 Now, imagine you chose an iphone access code containing 3 different numbers, with numbers 2,7 and 8 (the code is still 4 digits). Now, the thief knows 1 number was reused, but he doesn't know which one. what is the probability now that the phone will be unlocked successfully?
 
 
 ```python
-denom_phone_smudge_2 = None #or use math.factorial(4)
+denom_phone_smudge_2 = math.factorial(4) / math.factorial(2) #or use math.factorial(4)
 denom_phone_smudge_2
 ```
 
 
+
+
+    12.0
+
+
+
+
 ```python
-numer_phone_smudge_2 = None 
+numer_phone_smudge_2 = 5 
 numer_phone_smudge_2
 ```
 
 
+
+
+    5
+
+
+
+
 ```python
-prob_unlock_smudge_2 = None
+prob_unlock_smudge_2 = numer_phone_smudge_2 / denom_phone_smudge_2
 prob_unlock_smudge_2
 ```
+
+
+
+
+    0.4166666666666667
+
+
 
 ## Permutations to find the sample and event space
 
@@ -162,9 +242,16 @@ First, calculate the sample space. recall that replacement is possible here.
 
 
 ```python
-sample_space_fh = None
+sample_space_fh = 6**5
 sample_space_fh
 ```
+
+
+
+
+    7776
+
+
 
 ### b) event space
 
@@ -175,32 +262,62 @@ Next, calculate the event space. The best way to think of the event space here, 
 
 
 ```python
-ways_to_throw_given_fh= None # permutation with repetitions
+ways_to_throw_given_fh= math.factorial(5) /(math.factorial(3) * math.factorial(2)) 
+# permutation with repetitions - how many events where full house is possible
 ways_to_throw_given_fh
 ```
 
 
+
+
+    10.0
+
+
+
+
 ```python
-diff_fhses = None
+diff_fhses = math.factorial(6) / math.factorial(6 - 2) #permutations of a subset. H
+#How many different number combos are there ? 1 & 2, 1 & 3, 2 & 3 etc. 
 diff_fhses
 ```
+
+
+
+
+    30.0
+
+
 
 Then the event space is
 
 
 ```python
-event_space_fh =  None
+event_space_fh =   ways_to_throw_given_fh * diff_fhses
 event_space_fh
 ```
+
+
+
+
+    300.0
+
+
 
 ### c) Probability of full house
 
 
 ```python
-prob_fh = None
+prob_fh = event_space_fh / sample_space_fh
 
 prob_fh
 ```
+
+
+
+
+    0.038580246913580245
+
+
 
 ## Summary
 
